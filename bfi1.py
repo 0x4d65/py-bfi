@@ -26,6 +26,10 @@ for x in code:
     if x == '.' and loopBypass == False:
         buffer.append(chr(cells[pointer]))
     if x == ',' and loopBypass == False:
+        output = '';
+        output = output.join(buffer)
+        print(output)
+        buffer.clear()
         cells[pointer] = int(ord(input()))
     if x == '>' and loopBypass == False:
         pointer += 1
@@ -48,6 +52,11 @@ for x in code:
                     buffer.append(chr(cells[pointer]))
                 if y == ',':
                     cells[pointer] = ord(input())
+                    output = '';
+                    output = output.join(buffer)
+                    buffer.clear()
+                    print(output)
+        
                 if y == '>':
                     pointer += 1
                 if y == '<':
@@ -74,6 +83,7 @@ Hello world!
 output = '';
 output = output.join(buffer)
 print(output)
+        
 
 
 
