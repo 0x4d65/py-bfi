@@ -7,12 +7,14 @@ pointer = 0
 cells = [0]
 looplist = []
 buffer = []
-lsp = 0
+lsp_lib = []
 cp = 0
+ln = 0
 loopBypass = False
 for x in range(30000):
     cells.append(0)
-
+for x in range(100):
+    lsp_lib.append(0)
 #load code to ram
 filename = sys.argv[1]
 file = open(filename, 'rt')
@@ -34,11 +36,16 @@ while cp != len(code):
         pointer += 1
     if code[cp] == '<': 
         pointer -= 1
-    if code[cp] == '[':     
-        lsp = cp
+    if code[cp] == '[':
+        ln += 1     
+        lsp_lib[ln] = cp 
     if code[cp] == ']':
         if cells[pointer] != 0:
-            cp = lsp
+            cp = lsp_lib[ln]
+        else:
+            ln -= 1
+
+            
     cp += 1
 try:
     if sys.argv[2] == '--memmap':
