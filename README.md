@@ -7,4 +7,7 @@
  A pull request with a fix would be awesome
 ## How do i use this usless piece of software?
  Why would you? Its useless. \
- ```python bfi1.py [filename]```
+ ```python bfi1.py [filename] [switch]```\
+ Switches: \
+ --memmap \[amount\]
+ 

@@ -7,6 +7,8 @@ pointer = 0
 cells = [0]
 looplist = []
 buffer = []
+lsp = 0
+cp = 0
 loopBypass = False
 for x in range(30000):
     cells.append(0)
@@ -18,74 +20,30 @@ code = file.read()
 code = list(code)
 
 #main code interpretation
-for x in code:
-    if x == '+' and loopBypass == False:
+while cp != len(code):
+    if code[cp] == '+':
         cells[pointer] += 1
-    if x == '-' and loopBypass == False:
+    if code[cp] == '-': 
         cells[pointer] -= 1
-    if x == '.' and loopBypass == False:
-        buffer.append(chr(cells[pointer]))
-    if x == ',' and loopBypass == False:
-        output = '';
-        output = output.join(buffer)
-        print(output)
-        buffer.clear()
+    if code[cp] == '.': 
+        print(chr(cells[pointer]), end = "")
+    if code[cp] == ',': 
         cells[pointer] = int(ord(input()))
-    if x == '>' and loopBypass == False:
+        print("")
+    if code[cp] == '>': 
         pointer += 1
-    if x == '<' and loopBypass == False:
+    if code[cp] == '<': 
         pointer -= 1
-    if x == '[' and loopBypass == False:
-        loopBypass = True
-        continue
-    if x != ']' and loopBypass:
-        looplist.append(x)
-    if x == ']':
-        loopBypass = False
-        while cells[pointer] != 0:
-            for y in looplist:
-                if y == '+':
-                    cells[pointer] += 1
-                if y == '-':
-                    cells[pointer] -= 1
-                if y == '.':
-                    buffer.append(chr(cells[pointer]))
-                if y == ',':
-                    cells[pointer] = ord(input())
-                    output = '';
-                    output = output.join(buffer)
-                    buffer.clear()
-                    print(output)
-        
-                if y == '>':
-                    pointer += 1
-                if y == '<':
-                    pointer -= 1
-        looplist.clear() 
-
-'''
-Output buffering so instead of:
-H
-e
-l
-l
-o
-
-w
-o
-r
-l
-d
-!
-we get
-Hello world!
-'''
-output = '';
-output = output.join(buffer)
-print(output)
-        
-
-
-
-
-
+    if code[cp] == '[':     
+        lsp = cp
+    if code[cp] == ']':
+        if cells[pointer] != 0:
+            cp = lsp
+    cp += 1
+try:
+    if sys.argv[2] == '--memmap':
+        print('[', end='')
+        for y in range(int(sys.argv[3])):
+            print(str(cells[y]), end = '],[')
+except:
+    print('')
