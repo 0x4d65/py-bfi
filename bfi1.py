@@ -13,7 +13,7 @@ ln = 0
 loopBypass = False
 for x in range(30000):
     cells.append(0)
-for x in range(100):
+for x in range(30000):
     lsp_lib.append(0)
 #load code to ram
 filename = sys.argv[1]
