@@ -1,5 +1,6 @@
 #BrainFuckInterpreter by 0x4d65
-#Currently doesn't support nested loops
+#i wrote this 2 years ago and now im trying to add some comments
+#no idea if the loops finally work it's been almost 2 years since i tried to fix them 
 import sys
 
 #initialize variables
@@ -7,9 +8,9 @@ pointer = 0
 cells = [0]
 looplist = []
 buffer = []
-lsp_lib = []
-cp = 0
-ln = 0
+lsp_lib = [] # no idea what this is, something to do with loops
+cp = 0 # code pointer (index)  
+ln = 0 # loop number
 loopBypass = False
 for x in range(30000):
     cells.append(0)
